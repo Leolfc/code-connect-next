@@ -1,37 +1,24 @@
-// const post =  {
-
-//     "id": 1,
-//     "cover": "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/posts/introducao-ao-react.png",
-//     "title": "Introdução ao React",
-//     "slug": "introducao-ao-react",
-//     "body": "Neste post, vamos explorar os conceitos básicos do React, uma biblioteca JavaScript para construir interfaces de usuário. Vamos cobrir componentes, JSX e estados.",
-//     "markdown": "```javascript\nfunction HelloComponent() {\n  return <h1>Hello, world!</h1>;\n}\n```",
-//     "author": {
-//         "id": 101,
-//         "name": "Ana Beatriz",
-//         "username": "anabeatriz_dev",
-//         "avatar": "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/authors/anabeatriz_dev.png"
-//     }
-// }
 import { CardPost } from "@/components/CardPost";
-import Image from "next/image";
-import styles from "./page.module.css";
 import logger from "@/logger";
-async function getAllPosts() {
-  const response = await fetch("http://localhost:3042/posts");
+
+import styles from "./page.module.css";
+
+async function getAllPosts(page) {
+  const response = await fetch(`http://localhost:3042/posts?_page=${page}&_per_page=6`);
   if (!response.ok) {
-    logger.error("Ops! Algo deu errado");
+    logger.error("Ops, alguma coisa correu mal");
+    return [];
   }
-  logger.info("Post obtido com sucesso!!!😊");
+  logger.info("Posts obtidos com sucesso");
   return response.json();
 }
 
 export default async function Home() {
-  const posts = await getAllPosts();
+  const { data: posts } = await getAllPosts(1);
   return (
-    <main>
+    <main className={styles.grid}>
       {posts.map((post) => (
-        <CardPost post={post} />
+        <CardPost key={post.id} post={post} />
       ))}
     </main>
   );
