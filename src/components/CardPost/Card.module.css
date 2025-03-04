@@ -3,7 +3,10 @@
     border-radius: 8px;
     background: #171D1F;
 }
-
+.link{
+    text-decoration: none;
+    cursor: pointer;
+}
 .header {
     border-radius: 8px 8px 0px 0px;
     background: #888;

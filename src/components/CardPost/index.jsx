@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { Avatar } from "../Avatar";
 import styles from "./Card.module.css";
+import Link from "next/link";
 
 export const CardPost = ({ post }) => {
+
   return (
-    <article className={styles.card}>
+    <Link className={styles.link} href={`/Posts/${post.slug}`}>
+    <article className={styles.card} >
       <header className={styles.header}>
         <figure>
           <Image
@@ -23,5 +26,6 @@ export const CardPost = ({ post }) => {
         <Avatar imageSrc={post.author.avatar} name={post.author.username} />
       </footer>
     </article>
+    </Link>
   );
 };

@@ -1,7 +1,17 @@
-
 .grid {
-    display: flex;
-    gap: 24px;
-   flex-flow: row wrap;
-    justify-content: space-between;
+  display: flex;
+  gap: 24px;
+  flex-flow: row wrap;
+  justify-content: space-between;
+ 
+}
+.links {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex: 1 0 auto;
+}
+
+.links a {
+  color: #bfffc3;
 }
